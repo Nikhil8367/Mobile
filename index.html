@@ -1,178 +1,131 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Best Mobiles to Buy in 2023</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        padding: 20px;
-    }
-    h1 {
-        color: #333;
-        text-align: center;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        margin-bottom: 10px;
-    }
-    hr {
-        border: none;
-        height: 1px;
-        background-color: #ccc;
-        margin: 20px 0;
-    }
-    h2 {
-        color: #666;
-    }
-    p {
-        color: #888;
-    }
-    button {
-        background-color: green;
-        border: none;
-        padding: 0;
-    }
-    img {
-        width: 100%;
-        height: auto;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        input[type=text] {
+            padding: 10px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        #searchResults {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+        .result {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+    </style>
+    <title>Your Website</title>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;"></body>
-<center>
-<h1>
-<ul><li>
+<body>
+    <header>
+        <h1>Your Website</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search..." onkeydown="handleKeyPress(event)">
+            <button onclick="search()">Search</button>
+        </div>
+    </header>
 
-Mobiles, or mobile phones, are compact electronic devices designed for wireless communication. They feature touchscreen displays, advanced camera systems, and run on operating systems like Android or iOS. Mobiles support a wide range of applications, offer various connectivity options, and come in sleek designs. With a focus on constant evolution, they incorporate the latest technologies such as 5G connectivity and foldable screens. Mobiles play a pivotal role in modern life, transforming communication, productivity, and entertainment.
-</li></ul>
-<hr style="color:blue">
-    <div>
-        <h1>Note: To Buy The Mobile Click on The Image</h1>
+    <!-- Example content on your website with div elements -->
+    <div class="content">
+        <div>hi bro how are you i think you are fine so dont worry about me ok bye</div>
+        <div>what shall i do</div>
     </div>
-<div>
 
-<h3>There are many mobiles to buy in the market for us but there are mobiles which come to a special category which give an outstanding performance in any aspect like (for example:Gaming,screen,quality pictures quality and multitasking etc.).One of such mobile is iphone which contains bionic chipset which are generally on par in their class.The apple are making their base versions to be affordable to everyone.They even have an excellent service centers all over the world so when taking an iPhone there is no need to think before buying.</h3>
+    <div id="searchResults"></div>
 
-    <h1>1. I Phone</h1>
-    <a href="https://www.amazon.in/Apple-iPhone-15-128-GB/dp/B0CHX2F5QT/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="1.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 76,990/-<br>
-        RAM: 6GB<br>
-        Storage: 128GB<br>
-        Battery: 3367mAh
-    </p>
-    <hr style="color:black">
-</div>
+    <script>
+        var additionalContent = ['hi bro how are you i think you are fine'];
 
-<div>
-    <h1>2. Samsung S23 Ultra</h1>
-    <a href="https://www.amazon.in/Samsung-Galaxy-Ultra-Phantom-Storage/dp/B0BT9FDZ8N/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="2.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 1,24,999/-<br>
-        RAM: 12GB<br>
-        Storage: 128GB<br>
-        Battery: 5000mAh
-    </p>
-    <hr>
-</div>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        }
 
-<div>
-    <h1>3. Vivo V29e</h1>
-    <a href="https://www.amazon.in/Vivo-RED-128-GB-RAM/dp/B0CH8MQHLW/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="3.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 25,298/-<br>
-        RAM: 8GB<br>
-        Storage: 128GB<br>
-        Battery: 5000mAh
-    </p>
-    <hr>
-</div>
+        function search() {
+            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            var contentElements = document.querySelectorAll('.content div');
+            var allContent = Array.from(contentElements).map(el => el.innerText).concat(additionalContent);
 
-<div>
-    <h1>4. iQOO Z7 pro</h1>
-    <a href="https://www.amazon.in/iQOO-MediaTek-Dimesity-Processor-Smartphone/dp/B07WGPJPR3/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="4.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 24,999/-<br>
-        RAM: 8GB<br>
-        Storage: 256GB<br>
-        Battery: 4600mAh
-    </p>
-    <hr>
-</div>
+            var options = {
+                keys: ['item'],
+                threshold: 0.3,
+            };
 
-<div>
-    <h1>5. OnePlus Nord CE3</h1>
-    <a href="https://www.amazon.in/OnePlus-Nord-Surge-128GB-Storage/dp/B0C9QS5G2R/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="5.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 25,298/-<br>
-        RAM: 8GB<br>
-        Storage: 128GB<br>
-        Battery: 5000mAh
-    </p>
-    <hr>
-</div>
+            var fuse = new Fuse(allContent.map(item => ({ item })), options);
+            var results = fuse.search({ item: searchTerm });
 
-<div>
-    <h1>6. Samsung A34</h1>
-    <a href="https://www.amazon.in/Samsung-Awesome-Graphite-Storage-Gorilla/dp/B0BXD5ZZQ5/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="6.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 28,999/-<br>
-        RAM: 8GB<br>
-        Storage: 128GB<br>
-        Battery: 5000mAh
-    </p>
-    <hr>
-</div>
+            // Display results on the current page
+            displayResults(results, searchTerm);
 
-<div>
-    <h1>7. Realme Narzo 60 pro</h1>
-    <a href="https://www.amazon.in/realme-Cosmic-Smooth-Amoled-Display/dp/B0C7895BJ9/?tag=nikhil834134-21">
-        <button style="background-color:green">
-            <img src="7.jpeg">
-        </button>
-    </a>
-    <h2>Details:</h2>
-    <p>
-        Cost: 23,999/-<br>
-        RAM: 8GB<br>
-        Storage: 128GB<br>
-        Battery: 5000mAh
-    </p>
-    <hr>
-</div>
+            // Open a new tab with search results
+            var searchResultsUrl = 'results.html'; // Change this to the actual URL of your search results page
+            var queryString = '?search=' + encodeURIComponent(searchTerm);
+            window.open(searchResultsUrl + queryString, '_blank');
+        }
 
+        function displayResults(results, searchTerm) {
+            var resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
+                return;
+            }
+
+            results.forEach(function(result) {
+                var div = document.createElement('div');
+                div.classList.add('result');
+
+                var highlightedResult = result.item.item.replace(new RegExp(searchTerm, 'gi'), match => `<span style="background-color: #FFEB3B">${match}</span>`);
+                div.innerHTML = highlightedResult;
+
+                resultsContainer.appendChild(div);
+            });
+        }
+    </script>
 </body>
 </html>
