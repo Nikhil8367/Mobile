@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+           /* Add this style to hide the details initially */
+        .content div ul,
+        .content div h1,
+        .content div button {
+            display: none;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -106,13 +112,6 @@
     <div class="bottom-content">
         <!-- Add your bottom content here -->
     </div>
-
-    <div>
-        <button onclick="search()">Search</button>
-    </div>
-
-    <div id="searchResults"></div>
-
     <div>
         <div class="content">
             <div><h1>1. iPhone 15</h1>
@@ -139,7 +138,7 @@
                 <li>Display: 6.8 inch</li>
                 <li>OS: Android 12</li>
                 <li>Rating: 4.5/5</li></ul></div>
-            <div>3. Vivo V29e
+            <div><h1>3. Vivo V29e</h1>
             <a href="https://www.amazon.in/Vivo-V29-Blue-128-RAM/dp/B0CLDQY1ZH/?tag=nikhil834134-21">
         <button><img src="3.jpeg"></button></a>
         <ul>
@@ -327,6 +326,47 @@ function calculateCostRange() {
 }
 </script>
 <script>
+
+function displayResults(results, searchTerm) {
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+
+            // Show only the relevant details for search results
+            results.forEach(function (result) {
+                var div = document.createElement('div');
+                div.classList.add('result');
+                div.innerHTML = result.item.item;
+
+                resultsContainer.appendChild(div);
+
+                // Show exceptional details for search results
+                var exceptionalDetails = mobileElements[result.item.index].querySelector('.exceptional-details');
+                div.appendChild(exceptionalDetails.cloneNode(true));
+            });
+        }
+
+        function calculateCostRange() {
+            // Clear previous results
+            resultsContainer.innerHTML = '';
+
+            // Show only the relevant details for cost range results
+            mobileElements.forEach(function (mobileElement) {
+                var priceElement = mobileElement.querySelector('ul li:first-child');
+                var price = parseFloat(priceElement.textContent.replace(/[^\d.]/g, ''));
+
+                if (!isNaN(price) && price >= minCost && price <= maxCost) {
+                    var div = document.createElement('div');
+                    div.classList.add('result');
+                    div.innerHTML = mobileElement.innerHTML;
+
+                    resultsContainer.appendChild(div);
+
+                    // Show exceptional details for cost range results
+                    var exceptionalDetails = mobileElement.querySelector('.exceptional-details');
+                    div.appendChild(exceptionalDetails.cloneNode(true));
+                }
+            });
+        }
            function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 var activeElement = document.activeElement;
