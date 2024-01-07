@@ -85,6 +85,21 @@
             <button onclick="search()">Search</button>
         </div>
     </header>
+    <div class="result-container" id="costRangeResults"></div>
+    
+    <div>
+        <h1>Cost Range Calculator</h1>
+
+        <label for="minCostInput">Enter Minimum Cost:</label>
+        <input type="number" id="minCostInput" placeholder="Enter minimum cost">
+
+        <label for="maxCostInput">Enter Maximum Cost:</label>
+        <input type="number" id="maxCostInput" placeholder="Enter maximum cost">
+
+        <button onclick="calculateCostRange()">Search</button>
+
+        <div id="costRangeResultsContainer"></div> <!-- Unique id for cost range results container -->
+    </div>
 
     <div id="searchResults"></div>
 
@@ -275,52 +290,144 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/levenshtein-umd@1.4.0/dist/levenshtein.js"></script>
-    
+    <div id="costRangeResultsContainer"></div> <!-- New div for displaying cost range results -->
+
     <script>
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 search();
             }
         }
-    
-        function search() {
-            var searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            var mobiles = document.querySelectorAll('.content div');
-            var allContent = Array.from(mobiles).map(el => el.innerHTML);
-    
-            var options = {
-                keys: ['item'],
-                includeScore: true,
-                shouldSort: true,
-                threshold: 0.6,  // Lower threshold for more lenient matching
-            };
-    
-            var fuse = new Fuse(allContent.map(item => ({ item })), options);
-            var results = fuse.search({ item: searchTerm });
-    
-            displayResults(results, searchTerm);
+        var mobileElements = document.querySelectorAll('.content div');
+
+function calculateCostRange() {
+    var minCost = parseFloat(document.getElementById('minCostInput').value);
+    var maxCost = parseFloat(document.getElementById('maxCostInput').value);
+
+    if (isNaN(minCost) || isNaN(maxCost) || minCost > maxCost) {
+        alert('Please enter a valid cost range.');
+        return;
+    }
+
+    var resultsContainer = document.getElementById('costRangeResultsContainer');
+    resultsContainer.innerHTML = ''; // Clear previous results
+
+    mobileElements.forEach(function (mobileElement) {
+        var priceElement = mobileElement.querySelector('ul li:first-child');
+        var price = parseFloat(priceElement.textContent.replace(/[^\d.]/g, ''));
+
+        if (!isNaN(price) && price >= minCost && price <= maxCost) {
+            var div = document.createElement('div');
+            div.classList.add('result');
+            div.innerHTML = mobileElement.innerHTML;
+
+            resultsContainer.appendChild(div);
         }
-    
-        function displayResults(results, searchTerm) {
-            var resultsContainer = document.getElementById('searchResults');
-            resultsContainer.innerHTML = '';
-    
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<p>No results found.</p>';
-                return;
+    });
+}
+</script>
+<script>
+           function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                var activeElement = document.activeElement;
+
+                if (activeElement.tagName === 'INPUT') {
+                    var inputId = activeElement.id;
+
+                    if (inputId === 'searchInput') {
+                        search();
+                    } else if (inputId === 'minCostInput' || inputId === 'maxCostInput') {
+                        calculateCostRange();
+                    }
+                } else {
+                    // Default action when Enter is pressed (e.g., triggering search)
+                    search();
+                    calculateCostRange(); // Added to calculate cost range results
+                }
+
+                // Prevent the default action of the 'Enter' key (form submission)
+                event.preventDefault();
             }
-    
-            results.forEach(function (result) {
+        }
+
+        function search() {
+            // Your search function code here
+        }
+
+        function displayResults(results, searchTerm) {
+            // Your displayResults function code here
+        }
+
+        var mobileElements = document.querySelectorAll('.content div');
+
+        function calculateCostRange() {
+            // Your calculateCostRange function code here
+        }
+
+    function search() {
+        var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        var mobiles = document.querySelectorAll('.content div');
+        var allContent = Array.from(mobiles).map(el => el.innerHTML);
+
+        var options = {
+            keys: ['item'],
+            includeScore: true,
+            shouldSort: true,
+            threshold: 0.5,  // Lower threshold for more lenient matching
+        };
+
+        var fuse = new Fuse(allContent.map(item => ({ item })), options);
+        var results = fuse.search({ item: searchTerm });
+
+        displayResults(results, searchTerm);
+    }
+
+    function displayResults(results, searchTerm) {
+        var resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = '';
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No results found.</p>';
+            return;
+        }
+
+        results.forEach(function (result) {
+            var div = document.createElement('div');
+            div.classList.add('result');
+            div.innerHTML = result.item.item;
+
+            resultsContainer.appendChild(div);
+        });
+    }
+
+    var mobileElements = document.querySelectorAll('.content div');
+
+    function calculateCostRange() {
+        var minCost = parseFloat(document.getElementById('minCostInput').value);
+        var maxCost = parseFloat(document.getElementById('maxCostInput').value);
+
+        if (isNaN(minCost) || isNaN(maxCost) || minCost > maxCost) {
+            alert('Please enter a valid cost range.');
+            return;
+        }
+
+        var resultsContainer = document.getElementById('costRangeResultsContainer');
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        mobileElements.forEach(function (mobileElement) {
+            var priceElement = mobileElement.querySelector('ul li:first-child');
+            var price = parseFloat(priceElement.textContent.replace(/[^\d.]/g, ''));
+
+            if (!isNaN(price) && price >= minCost && price <= maxCost) {
                 var div = document.createElement('div');
                 div.classList.add('result');
-                div.innerHTML = result.item.item;
-    
+                div.innerHTML = mobileElement.innerHTML;
+
                 resultsContainer.appendChild(div);
-            });
-        }
-    </script>
+            }
+        });
+    }
+</script>
     
     
 </body>
